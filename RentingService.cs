@@ -113,9 +113,9 @@ class ReturnReciept
 
   public String BookTitle;
 
-  public ReturnReciept(string bookTitle)
+  public ReturnReciept(string returnBookTitle)
   {
-    BookTitle = bookTitle;
+    BookTitle = returnBookTitle;
     returnDate = DateTime.Today;
   }
 }

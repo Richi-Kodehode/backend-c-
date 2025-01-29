@@ -35,13 +35,30 @@ while (true)
       }
       else
       {
-        Console.WriteLine($"Congratulation! Book borrowed. Please return it by: {reciept.DueDate}");
+        Console.WriteLine($"Rental active. Please return it by: {reciept.DueDate}");
       }
 
       break;
     case "return":
-      Console.WriteLine("Returning book");
-      break;
+        Console.WriteLine("Enter the title of the book you want to return:");
+        string? returnBookTitleInput = Console.ReadLine();
+
+        if (returnBookTitleInput == null)
+        {
+            Environment.Exit(1);
+        }
+
+        ReturnReciept? returnReciept = rentingService.ReturnBook(returnBookTitleInput);
+
+        if (returnReciept == null)
+        {
+            Console.WriteLine($"No active rental found for book '{returnBookTitleInput}'.");
+        }
+        else
+        {
+            Console.WriteLine($"Book '{returnBookTitleInput}' returned successfully on {returnReciept.BookTitle}");
+        }
+        break;
     default:
       Console.WriteLine("Invalid Input");
       break;
